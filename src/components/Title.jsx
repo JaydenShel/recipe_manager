@@ -1,6 +1,10 @@
+import '../App.css'
+
 function Title(){
     return(
-    <h1>Ratatouille</h1>
+        <div className = "title-container">
+            <h1>Ratatouille</h1>
+        </div>
     );
 }
 
