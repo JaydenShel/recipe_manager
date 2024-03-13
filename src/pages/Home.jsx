@@ -4,13 +4,15 @@ import Title from '../components/Title';
 import About from '../components/About';
 import LoginButtons from '../components/LoginButtons';
 import RecipeCarouselS from '../components/RecipeCarouselS';
-import recipeImage1 from '../images/lemon_chicken.jpg';
-import recipeImage2 from '../images/shrimp_scampi.jpg';
+import lemonChicken from '../images/lemon_chicken.jpg';
+import shrimpScampi from '../images/shrimp_scampi.jpg';
+import stirFry from '../images/stir_fry.jpg';
+import margheritaPizza from '../images/pizza.jpg'
 
 
 function Home(){
     const IsUserLoggedIn = false;
-    const recipeImages = [recipeImage1, recipeImage2];
+    const recipeImages = [lemonChicken, shrimpScampi, stirFry, margheritaPizza];
 
     return(
         <div> 
@@ -19,6 +21,8 @@ function Home(){
             <Title/>
      
             <About/>
+
+            <h2>Discover Our Sample Recipes</h2>
 
             <RecipeCarouselS images={recipeImages} />
 
