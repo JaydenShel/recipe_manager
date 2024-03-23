@@ -7,18 +7,16 @@ import Settings from './pages/Settings';
 
 function App() {
   return(
-    <div>
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Home/>} />
-          <Route path="/home" element={<Home/>}/>
-          <Route path="/login" element={<Login/>}/>
-          <Route path="/account" element={<Account/>}/>
-          <Route path="/recipes" element={<Recipes/>}/>
-          <Route path="/settings" element={<Settings/>}/>
-        </Routes>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Home/>}/>
+        <Route path="/home" element={<Home/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/account" element={<Account/>}/>
+        <Route path="/recipes" element={<Recipes/>}/>
+        <Route path="/settings" element={<Settings/>}/>
+      </Routes>
+    </BrowserRouter>
   );
 
 }
