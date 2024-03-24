@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import '../App.css'
 import Title from "../components/Title";
 import TextBox from "../components/InputBox";
+import { Context } from "../components/LoginState";
 
 function Account(){
+    const [isLoggedIn, setIsLoggedIn] = useContext(Context);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
@@ -21,12 +23,17 @@ function Account(){
             });
         
             if (response.status >= 400) {
-                const errorData = await response.json();
-                setError({errorData});
+                setError("Registration Failed");
             } 
             else {
                 setError("Registration Sucessful");
                 setIsSuccess(true);
+                setIsLoggedIn(true);
+                console.log(isLoggedIn);
+
+                setTimeout( () => {
+                    window.location.href = "/";
+                }, 1000);
             }
         } catch (error) {
             setError(error.message);
