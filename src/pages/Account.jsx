@@ -3,6 +3,7 @@ import '../App.css'
 import Title from "../components/Title";
 import TextBox from "../components/InputBox";
 import { Context } from "../components/LoginState";
+import HomeButton from '../components/HomeButton';
 
 function Account(){
     const [isLoggedIn, setIsLoggedIn] = useContext(Context);
@@ -42,6 +43,7 @@ function Account(){
 
     return(
         <div>
+            <HomeButton />
             <Title/>
             <TextBox
                 label="Choose Username"

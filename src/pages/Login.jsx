@@ -2,6 +2,7 @@ import React from "react";
 import '../App.css'
 import Title from "../components/Title";
 import TextBox from "../components/InputBox";
+import HomeButton from '../components/HomeButton';
 
 function Login(){
     const [username, setUsername] = useState("");
@@ -9,6 +10,7 @@ function Login(){
 
     return(
         <div>
+            <HomeButton />
             <Title/>
             <div>
             <TextBox
