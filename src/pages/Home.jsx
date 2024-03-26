@@ -4,17 +4,20 @@ import { Context } from '../components/LoginState';
 import Title from '../components/Title';
 import About from '../components/About';
 import LoginButtons from '../components/LoginButtons';
+import SettingsButton from '../components/SettingsButton';
 import RecipeCarouselS from '../components/RecipeCarouselS';
 import lemonChicken from '../images/lemon_chicken.jpg';
 import shrimpScampi from '../images/shrimp_scampi.jpg';
 import stirFry from '../images/stir_fry.jpg';
 import margheritaPizza from '../images/pizza.jpg'
 
+
 function Home(){
     const [isLoggedIn, setIsLoggedIn] = useContext(Context);
     const recipeImages = [lemonChicken, shrimpScampi, stirFry, margheritaPizza];
     return(
         <div> 
+            <SettingsButton/>
             {isLoggedIn ? null : <LoginButtons />}
             
             <Title/>
