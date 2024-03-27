@@ -12,6 +12,10 @@ function Account(){
     const [error, setError] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
 
+    useEffect(() => {
+        console.log("isLoggedIn state:", isLoggedIn);
+    }, [isLoggedIn]);
+
     const handleSubmit = async () => {
         setIsSuccess(false);
         try {

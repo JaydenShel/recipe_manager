@@ -21,15 +21,7 @@ const RecipeCarouselS = ({ images }) => {
     };
   
     return (
-      <div className="recipe-carousel">
-        <a href={`/recipe/${currentIndex}`}>
-          <img
-            key={currentIndex}
-            src={images[currentIndex]}
-            className="carousel-image"
-            alt={`Recipe ${currentIndex}`}
-          />
-        </a>
+      <div className="recipe-carousel-container">
         <div className="slide_direction">
           <div className="left" onClick={handlePrevious}>
             <svg
@@ -41,6 +33,16 @@ const RecipeCarouselS = ({ images }) => {
               <path d="M400 976 0 576l400-400 56 57-343 343 343 343-56 57Z" />
             </svg>
           </div>
+        </div>
+        <a href={`/recipe/${currentIndex}`} className="carousel-image-link">
+          <img
+            key={currentIndex}
+            src={images[currentIndex]}
+            className="carousel-image"
+            alt={`Recipe ${currentIndex}`}
+          />
+        </a>
+        <div className="slide_direction">
           <div className="right" onClick={handleNext}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

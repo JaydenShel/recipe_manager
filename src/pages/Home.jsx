@@ -16,12 +16,16 @@ function Home(){
     const [isLoggedIn, setIsLoggedIn] = useContext(Context);
     const recipeImages = [lemonChicken, shrimpScampi, stirFry, margheritaPizza];
     return(
-        <div> 
-            <SettingsButton/>
-            {isLoggedIn ? null : <LoginButtons />}
-            
+        <div className='home-page'> 
+        
+            <div className='button-container'>
+                <SettingsButton/>
+
+                {isLoggedIn ? null : <LoginButtons />}
+            </div>
+
             <Title/>
-     
+
             <About/>
 
             <h2>Discover Our Sample Recipes</h2>
