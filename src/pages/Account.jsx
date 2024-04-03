@@ -26,15 +26,18 @@ function Account(){
                 },
                 body: JSON.stringify({ username, password }),
             });
-        
+
             if (response.status >= 400) {
                 setError("Registration Failed");
             } 
             else {
+                const data = await response.json(); 
+                sessionStorage.setItem('token', data.token);
+                const token = sessionStorage.getItem('token');
+
                 setError("Registration Sucessful");
                 setIsSuccess(true);
                 setIsLoggedIn(true);
-                console.log(isLoggedIn);
 
                 setTimeout( () => {
                     window.location.href = "/";

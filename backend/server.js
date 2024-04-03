@@ -2,6 +2,10 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const crypto = require('crypto');
+
+const secretKey = crypto.randomBytes(32).toString('hex');
+global.secretKey = secretKey;
 
 const registerRoute = require('./api/register');
 

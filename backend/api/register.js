@@ -1,4 +1,5 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
 const router = express.Router();
 
 router.post('/', async (req, res) => {
@@ -16,9 +17,9 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ error: "Username in wrong format." });
     }
 
-    res.status(200).json({ message: "Registration successful!" });
+    const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
+    res.status(200).json({token});
     
-
 });
 
 module.exports = router;

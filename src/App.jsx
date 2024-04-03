@@ -19,7 +19,6 @@ function App() {
           <Route path="/recipes" element={<Recipes/>}/>
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/recipe/0" element={<LemonChicken/>}/>
-      
         </Routes>
       </BrowserRouter>
     </LoginState>
