@@ -9,6 +9,8 @@ global.secretKey = secretKey;
 
 const registerRoute = require('./api/register');
 
+const loadRoute = require('./api/load');
+
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -16,6 +18,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/register', registerRoute);
+app.use('/load', loadRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

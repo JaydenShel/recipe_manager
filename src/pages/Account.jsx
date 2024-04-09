@@ -33,7 +33,6 @@ function Account(){
             else {
                 const data = await response.json(); 
                 sessionStorage.setItem('token', data.token);
-                const token = sessionStorage.getItem('token');
 
                 setError("Registration Sucessful");
                 setIsSuccess(true);
