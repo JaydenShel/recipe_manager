@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 
 function RecipeBox(){
     useEffect(() => {
-        console.log(sessionStorage.getItem('token'));
         load();
     }, []);
 
@@ -16,15 +15,34 @@ function RecipeBox(){
     }
 
     const load = async () => {
-        const response = fetch("http://localhost:3000/load/", {
-            method: "POST",
-            mode: 'no-cors',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(sessionStorage.getItem('token')),
-        });
-    }
+        const token = sessionStorage.getItem('token');
+        console.log({token});
+        if (!token) {
+            console.log("Token not found in sessionStorage");
+            return;
+        }
+    
+        try {
+            const response = await fetch("http://localhost:3000/load/", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    
+                },
+                body: JSON.stringify({ token: token }),
+            });
+       
+            if (response.ok) {
+                console.log("Load request successful");
+
+            } else {
+                console.error("Load request failed");
+              
+            }
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    };
 
     return (
 

@@ -12,12 +12,9 @@ function Account(){
     const [error, setError] = useState("");
     const [isSuccess, setIsSuccess] = useState(false);
 
-    useEffect(() => {
-        console.log("isLoggedIn state:", isLoggedIn);
-    }, [isLoggedIn]);
-
     const handleSubmit = async () => {
         setIsSuccess(false);
+        sessionStorage.setItem('username', username);
         try {
             const response = await fetch("http://localhost:3000/register/", {
                 method: "POST",

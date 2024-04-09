@@ -1,19 +1,20 @@
 const express = require("express");
-const jwt = require("jsonwebtoken"); 
+const jwt = require("jsonwebtoken");
 
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    //Decode the auth token to get username to access user information in database
-    console.log(req.body);
-    const { auth_token } = req.body;
+    // Decode the auth token to get the username to access user information in the database
+    const { token } = req.body;
     let username;
     try {
-        username = jwt.decode(auth_token, global.secretKey); 
-        res.status(200).json({ username }); 
+        const decodedToken = jwt.verify(token, global.secretKey);
+        username = decodedToken.username; 
+        console.log(username);
+        res.status(200).json({ username });
     } catch (error) {
-        console.error("Error decoding auth token:", error);
-        return res.status(400).json({ error: "Failed to decode auth token" });
+        console.error("Error verifying/authenticating auth token:", error);
+        return res.status(400).json({ error: "Failed to verify/authenticate auth token" });
     }
 });
 

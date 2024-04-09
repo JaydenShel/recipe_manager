@@ -5,6 +5,7 @@ import Title from '../components/Title';
 import About from '../components/About';
 import LoginButtons from '../components/LoginButtons';
 import SettingsButton from '../components/SettingsButton';
+import Profile from '../components/Profile';
 import ProfileButtons from '../components/ProfileButtons';
 import RecipeCarouselS from '../components/RecipeCarouselS';
 import lemonChicken from '../images/lemon_chicken.jpg';
@@ -28,6 +29,7 @@ function Home(){
             
 
             <div className='button-container'>
+                {!isLoggedIn ? null : <Profile/>}
                 <SettingsButton/>
                 {!isLoggedIn ? null : <ProfileButtons/>}
                
