@@ -10,7 +10,6 @@ router.post('/', async (req, res) => {
     try {
         const decodedToken = jwt.verify(token, global.secretKey);
         username = decodedToken.username; 
-        console.log(username);
         res.status(200).json({ username });
     } catch (error) {
         console.error("Error verifying/authenticating auth token:", error);

@@ -4,7 +4,11 @@ import Login from './pages/Login';
 import Account from './pages/Account';
 import Recipes from './pages/Recipes';
 import Settings from './pages/Settings';
+import ProfilePage from './pages/ProfilePage';
 import LemonChicken from './pages/LemonChicken';
+import ShrimpScampi from './pages/ShrimpScampi';
+import StirFry from './pages/StirFry';
+import Pizza from './pages/Pizza';
 import LoginState from './components/LoginState';
 
 function App() {
@@ -19,6 +23,10 @@ function App() {
           <Route path="/recipes" element={<Recipes/>}/>
           <Route path="/settings" element={<Settings/>}/>
           <Route path="/recipe/0" element={<LemonChicken/>}/>
+          <Route path="/recipe/1" element={<ShrimpScampi/>}/>
+          <Route path="/recipe/2" element={<StirFry/>}/>
+          <Route path="/recipe/3" element={<Pizza/>}/>
+          <Route path="/profile" element={<ProfilePage/>}/>
         </Routes>
       </BrowserRouter>
     </LoginState>

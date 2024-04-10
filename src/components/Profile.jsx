@@ -1,12 +1,15 @@
+import { Link } from 'react-router-dom';
+
 function Profile() {
     return (
         <div>
-            <div>
+            <Link to={'/profile'}>
                 <img src="./images/default_profile.jpg" alt="" className="profile-image"></img>
-            </div>
+            </Link>
             <div>
               <h1 className="profile-text">{sessionStorage.getItem('username')}</h1>  
             </div>
+
         </div>
     )
 }
