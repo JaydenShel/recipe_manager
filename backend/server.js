@@ -8,8 +8,9 @@ const secretKey = crypto.randomBytes(32).toString('hex');
 global.secretKey = secretKey;
 
 const registerRoute = require('./api/register');
-
 const loadRoute = require('./api/load');
+const storeRoute = require('./api/store');
+const deleteRoute = require('./api/delete')
 
 const PORT = process.env.PORT || 3000;
 
@@ -19,6 +20,8 @@ app.use(bodyParser.json());
 
 app.use('/register', registerRoute);
 app.use('/load', loadRoute);
+app.use('/store', storeRoute);
+app.use('/delete', deleteRoute);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 function RecipeBox(){
     useEffect(() => {
@@ -14,9 +15,19 @@ function RecipeBox(){
             });
     }
 
+    const remove = async (recipeName) => {
+        const response = await fetch("http://localhost:3000/delete/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            });
+    }
+
     const load = async () => {
         const token = sessionStorage.getItem('token');
         console.log({token});
+        
         if (!token) {
             console.log("Token not found in sessionStorage");
             return;
@@ -31,7 +42,7 @@ function RecipeBox(){
                 },
                 body: JSON.stringify({ token: token }),
             });
-       
+    
             if (response.ok) {
                 console.log("Load request successful");
 
@@ -48,10 +59,12 @@ function RecipeBox(){
 
         <div className="recipe-box">
             <div className="button-container">
+                <Link to={'/recipes/store'}>
                 <button className="button">
                     <p>Store Recipe</p>
                 </button>
-                <button className="button">
+                </Link>
+                <button onClick={remove} className="button">
                     <p>Delete Recipe</p>
                 </button>
             </div>
