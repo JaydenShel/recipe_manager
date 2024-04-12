@@ -2,16 +2,17 @@ const express = require("express");
 const router = express.Router();
 
 router.post('/', async (req, res) => {
-    const { recipeSlots } = req.body;
-    console.log(recipeSlots);
+    const { recipeSlots, username } = req.body;
+    console.log(recipeSlots, username);
+    console.log(req.body);
     try {
         for (const recipe of recipeSlots) {
             const { recipeName, ingredients, instructions } = recipe;
             const query = 
-                `INSERT INTO recipedb.recipes (recipe_name, ingredients, instructions)
-                VALUES ($1, $2, $3)`;
+                `INSERT INTO recipedb.recipes (recipe_name, ingredients, instructions, username)
+                VALUES ($1, $2, $3, $4)`;
                 const { queryDatabase } = require('../server');
-            await queryDatabase(query, [recipeName, ingredients, instructions]);
+            await queryDatabase(query, [recipeName, ingredients, instructions, username]);
         }
         res.status(201).json({ message: 'Recipes stored successfully!' });
     } catch (error) {

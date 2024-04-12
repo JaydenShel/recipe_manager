@@ -40,13 +40,14 @@ const StoreRecipe = () => {
     };
 
     const handleSubmit = async () => {
+    
         try {
             const response = await fetch("http://localhost:3000/store/", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ recipeSlots }),
+                body: JSON.stringify({ recipeSlots, username }),
             });
             console.log(response);
             if (response.status >= 400) {

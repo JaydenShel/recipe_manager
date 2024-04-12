@@ -16,11 +16,13 @@ function RecipeBox(){
     }
 
     const remove = async (recipeName) => {
+        const username = sessionStorage.getItem('username');
         const response = await fetch("http://localhost:3000/delete/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
+            body: JSON.stringify({ username }),
             });
     }
 
@@ -50,6 +52,8 @@ function RecipeBox(){
                 console.error("Load request failed");
               
             }
+            const data = await response.json();
+            sessionStorage.setItem('recipes', JSON.stringify(data));
         } catch (error) {
             console.error("Error:", error);
         }
