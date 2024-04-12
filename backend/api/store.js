@@ -4,12 +4,20 @@ const router = express.Router();
 router.post('/', async (req, res) => {
     const { recipeSlots } = req.body;
     console.log(recipeSlots);
-    if (!recipeSlots) {
-        return res.status(400).json({ error: 'Store API lacking information' });
+    try {
+        for (const recipe of recipeSlots) {
+            const { recipeName, ingredients, instructions } = recipe;
+            const query = 
+                `INSERT INTO recipedb.recipes (recipe_name, ingredients, instructions)
+                VALUES ($1, $2, $3)`;
+                const { queryDatabase } = require('../server');
+            await queryDatabase(query, [recipeName, ingredients, instructions]);
+        }
+        res.status(201).json({ message: 'Recipes stored successfully!' });
+    } catch (error) {
+        console.error('Error storing recipes:', error);
+        res.status(500).json({ error: 'Internal Server Error' });
     }
-    const recipeNames = recipeSlots.map(recipe => recipe.recipeName);
-    
-    res.status(200);
 });
 
 module.exports = router;
