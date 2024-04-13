@@ -18,8 +18,27 @@ router.post('/', async (req, res) => {
     }
 
     const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' });
-    res.status(200).json({token}); 
     
+    try {
+        const { queryDatabase } = require('../server');
+        const checkUsername = `SELECT username FROM recipedb.user WHERE username = $1`;
+        const result = await queryDatabase(checkUsername, [username]);
+        if(result.length > 0) {
+            return res.status(400).json({error: 'Username already exists!'})   
+        }
+
+        const query = 
+                `INSERT INTO recipedb.user (username, password)
+                VALUES ($1, $2)`;
+        await queryDatabase(query, [username, password]);
+
+        return res.status(200).json({token})
+        
+        
+    } catch (error) {
+        console.error("error:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }    
 });
 
 module.exports = router;

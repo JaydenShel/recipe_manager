@@ -31,7 +31,7 @@ function Login(){
                 const data = await response.json(); 
                 sessionStorage.setItem('token', data.token);
 
-                setError("Registration Sucessful");
+                setError("Login Sucessful!");
                 setIsSuccess(true);
                 setIsLoggedIn(true);
 
