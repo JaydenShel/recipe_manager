@@ -51,6 +51,7 @@ function RecipeBox(){
 
             const data = await response.json();
             const recipesArray = data.recipes;
+            sessionStorage.setItem('recipe_info', recipesArray);
             const recipeNames = recipesArray.map(recipe => recipe.recipe_name);
             
             sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
