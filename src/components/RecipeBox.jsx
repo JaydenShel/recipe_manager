@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Recipe from './Recipe';
 import { Link } from 'react-router-dom';
 
 function RecipeBox(){
@@ -7,16 +8,6 @@ function RecipeBox(){
     useEffect(() => {
         load();
     }, []);
-
-    //Retrieve and display data for a specific recipe
-    const retrieve = async (recipeName) => {
-        const response = await fetch("http://localhost:3000/retrieve/", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            });
-    }
 
     //Remove selected recipe
     const remove = async (recipeName) => {
@@ -80,11 +71,13 @@ function RecipeBox(){
 
     const handleSelectedChange = (event) => {
         setSelectedRecipe(event.target.value);
+        sessionStorage.setItem('currentRecipe', event.target.value);
     }
 
     const deleteMessage = (recipeName) => {
-        alert('Recipe');
-      };
+        alert(`${recipeName} Has been succesfully deleted.`);
+        window.location.reload();
+    };
 
     return (
         <div className="recipe-box">
@@ -94,7 +87,7 @@ function RecipeBox(){
                     <p>Store Recipe</p>
                 </button>
                 </Link>
-                <button onClick={() => remove(selectedRecipe)} className="button">
+                <button onClick={() => remove(selectedRecipe) && deleteMessage(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
             </div>
@@ -105,6 +98,7 @@ function RecipeBox(){
                     <option value="-">-</option>
                 </select>
             </div>
+            <Recipe/>
         </div>
     )
 }
