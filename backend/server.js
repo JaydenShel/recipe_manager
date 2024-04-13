@@ -12,6 +12,7 @@ const registerRoute = require('./api/register');
 const loadRoute = require('./api/load');
 const storeRoute = require('./api/store');
 const deleteRoute = require('./api/delete');
+const loginRoute = require('./api/login');
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +24,7 @@ app.use('/register', registerRoute);
 app.use('/load', loadRoute);
 app.use('/store', storeRoute);
 app.use('/delete', deleteRoute);
+app.use('./login', loginRoute);
 
 async function queryDatabase(query, value) {
   const client = new Client({

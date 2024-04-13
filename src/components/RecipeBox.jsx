@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function RecipeBox(){
+    const [selectedRecipe, setSelectedRecipe] = useState('');
+
     useEffect(() => {
         load();
     }, []);
@@ -24,7 +26,7 @@ function RecipeBox(){
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ username }),
+            body: JSON.stringify({ username, recipeName }),
             });
     }
 
@@ -76,8 +78,15 @@ function RecipeBox(){
         }
     };
 
-    return (
+    const handleSelectedChange = (event) => {
+        setSelectedRecipe(event.target.value);
+    }
 
+    const deleteMessage = (recipeName) => {
+        alert('Recipe');
+      };
+
+    return (
         <div className="recipe-box">
             <div className="button-container">
                 <Link to={'/recipes/store'}>
@@ -85,14 +94,14 @@ function RecipeBox(){
                     <p>Store Recipe</p>
                 </button>
                 </Link>
-                <button onClick={remove} className="button">
+                <button onClick={() => remove(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
             </div>
             <div className="button-container">
                 <h1 className="text">NA</h1>
                 <label htmlFor="recipes" className="recipe-dropdown">Choose a Recipe:</label>
-                <select id="recipes" name="recipes">
+                <select onChange={handleSelectedChange} id="recipes" name="recipes">
                     <option value="-">-</option>
                 </select>
             </div>
