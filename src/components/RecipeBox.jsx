@@ -6,6 +6,7 @@ function RecipeBox(){
         load();
     }, []);
 
+    //Retrieve and display data for a specific recipe
     const retrieve = async (recipeName) => {
         const response = await fetch("http://localhost:3000/retrieve/", {
             method: "GET",
@@ -15,6 +16,7 @@ function RecipeBox(){
             });
     }
 
+    //Remove selected recipe
     const remove = async (recipeName) => {
         const username = sessionStorage.getItem('username');
         const response = await fetch("http://localhost:3000/delete/", {
@@ -26,6 +28,7 @@ function RecipeBox(){
             });
     }
 
+    //Load all recipes under username 
     const load = async () => {
         const token = sessionStorage.getItem('token');
         console.log({token});
@@ -52,8 +55,22 @@ function RecipeBox(){
                 console.error("Load request failed");
               
             }
+
             const data = await response.json();
-            sessionStorage.setItem('recipes', JSON.stringify(data));
+            const recipesArray = data.recipes;
+            const recipeNames = recipesArray.map(recipe => recipe.recipe_name);
+            
+            sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
+            console.log(recipeNames);
+
+            const selectName = document.getElementById('recipes');
+
+            recipeNames.forEach(recipeName => {
+                const option = document.createElement('option');
+                option.value = recipeName;
+                option.textContent = recipeName;
+                selectName.appendChild(option);
+            });
         } catch (error) {
             console.error("Error:", error);
         }
@@ -76,7 +93,7 @@ function RecipeBox(){
                 <h1 className="text">NA</h1>
                 <label htmlFor="recipes" className="recipe-dropdown">Choose a Recipe:</label>
                 <select id="recipes" name="recipes">
-                    <option value="NA">NA</option>
+                    <option value="-">-</option>
                 </select>
             </div>
         </div>

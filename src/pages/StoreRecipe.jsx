@@ -40,7 +40,7 @@ const StoreRecipe = () => {
     };
 
     const handleSubmit = async () => {
-    
+        const username = sessionStorage.getItem('username');
         try {
             const response = await fetch("http://localhost:3000/store/", {
                 method: "POST",
