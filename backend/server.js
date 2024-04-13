@@ -24,7 +24,7 @@ app.use('/register', registerRoute);
 app.use('/load', loadRoute);
 app.use('/store', storeRoute);
 app.use('/delete', deleteRoute);
-app.use('./login', loginRoute);
+app.use('/login', loginRoute);
 
 async function queryDatabase(query, value) {
   const client = new Client({
