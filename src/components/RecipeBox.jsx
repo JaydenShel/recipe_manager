@@ -83,8 +83,9 @@ function RecipeBox(){
     }
 
     const deleteMessage = (recipeName) => {
-        alert('Recipe');
-      };
+        alert(`${recipeName} Has been succesfully deleted.`);
+        window.location.reload();
+    };
 
     return (
         <div className="recipe-box">
@@ -94,7 +95,7 @@ function RecipeBox(){
                     <p>Store Recipe</p>
                 </button>
                 </Link>
-                <button onClick={() => remove(selectedRecipe)} className="button">
+                <button onClick={() => remove(selectedRecipe) && deleteMessage(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
             </div>
