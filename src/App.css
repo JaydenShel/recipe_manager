@@ -115,6 +115,19 @@ body {
      0px  0px 0 #000;
 }
 
+.recipe-title {
+  display: flex;
+  align-items: center;
+  color: rgb(37, 115, 6);
+  font-size: 30px;
+  font-family: 'Roboto';
+  text-shadow: 
+  1px 1px 0 #000,  
+  1px 1px 0 #000,
+  1px 1px 0 #000,
+  1px 1px 0 #000;
+}
+
 .recipe-carousel{
   color: black;
   justify-content: center;

@@ -1,10 +1,18 @@
 import { Link } from 'react-router-dom';
 
 function Profile() {
+    const handleLogOut = () => {
+        sessionStorage.setItem('token', '');
+        setTimeout( () => {
+            window.location.href = "/home";
+        }, 10);
+    }
     return (
         <div>
-            <Link to={'/profile'}>
-                <img src="./images/default_profile.jpg" alt="" className="profile-image"></img>
+            <Link to={'/home'}>
+                <button onClick={handleLogOut}>
+                    Log Out
+                </button>
             </Link>
             <div>
               <h1 className="profile-text">{sessionStorage.getItem('username')}</h1>  

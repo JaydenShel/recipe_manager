@@ -51,7 +51,7 @@ function RecipeBox(){
 
             const data = await response.json();
             const recipesArray = data.recipes;
-            sessionStorage.setItem('recipe_info', recipesArray);
+            sessionStorage.setItem('recipe_info', JSON.stringify(recipesArray));
             const recipeNames = recipesArray.map(recipe => recipe.recipe_name);
             
             sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
@@ -93,7 +93,6 @@ function RecipeBox(){
                 </button>
             </div>
             <div className="button-container">
-                <h1 className="text">NA</h1>
                 <label htmlFor="recipes" className="recipe-dropdown">Choose a Recipe:</label>
                 <select onChange={handleSelectedChange} id="recipes" name="recipes">
                     <option value="-">-</option>
