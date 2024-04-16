@@ -5,11 +5,11 @@ import RecipeBox from "../components/RecipeBox";
 
 function Recipes(){
     return(
-        <>
+        <div className="home-page">
             <HomeButton/>
             <Title/>
             <RecipeBox/>
-        </>
+        </div>
     );
 }
 

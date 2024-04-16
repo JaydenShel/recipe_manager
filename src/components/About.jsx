@@ -3,7 +3,7 @@ import '../App.css'
 function About(){
     return(
         <div className="about-container">
-            <p>
+            <p className='about'>
             Keeping track of recipes can be a daunting task. Physical recipe cards are easily misplaced,
             digital bookmarks can become cluttered, and finding the perfect recipe to fit your needs and
             ingredients is often be challenging. Our recipe manager is designed with one goal in mind: to

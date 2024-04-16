@@ -1,6 +1,5 @@
 import '../App.css'
 import React, { useContext, useState, useEffect } from 'react';
-import { Context } from '../components/LoginState';
 import Title from '../components/Title';
 import About from '../components/About';
 import LoginButtons from '../components/LoginButtons';
@@ -41,7 +40,7 @@ function Home(){
 
             <About/>
 
-            <h2>Discover Our Sample Recipes</h2>
+            <h2 className='sample-container'>Discover Our Sample Recipes</h2>
 
             <RecipeCarouselS images={recipeImages} />
 

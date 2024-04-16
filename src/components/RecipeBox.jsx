@@ -91,12 +91,12 @@ function RecipeBox(){
                 <button onClick={() => remove(selectedRecipe) && deleteMessage(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
-                <Link to={'/sortI'}>
+                <Link to={'/recipes/sortI'}>
                 <button className="button">
                     <p>Sort by Ingredients</p>
                 </button>
                 </Link>
-                <Link to ={'/sortT'}>
+                <Link to ={'/recipes/sortT'}>
                 <button className="button">
                     <p>Sort by Time</p>
                 </button>
