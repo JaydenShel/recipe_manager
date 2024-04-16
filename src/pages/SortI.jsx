@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
 import HomeButton from '../components/HomeButton';
+import Recipe from '../components/Recipe';
 
 function SortI() {
    const [sortedIngredients, setSortedIngredients] = useState([{ ingredient: '' }]);
 
    const handleSubmit = (e) => {
-        e.preventDefault();
-        sessionStorage.setItem("sortedIngredients", sortedIngredients);
-        console.log("Sorted Ingredients:", sortedIngredients);
-        setTimeout( () => {
-            window.location.href = "/recipes";
-        }, 100);
+    e.preventDefault();
+    console.log("Sorted Ingredients:", sortedIngredients);
+    const recipeData = JSON.parse(sessionStorage.getItem('recipe_info'));
+    const matchingRecipes = []; 
+
+    recipeData.forEach(recipe => {
+      const recipeIngredients = recipe.ingredients;
+
+      const hasAllIngredients = sortedIngredients.every(ingredientObj => {
+        return recipeIngredients.includes(ingredientObj.ingredient);
+      });
+
+      if (hasAllIngredients) {
+        matchingRecipes.push(recipe.recipe_name);
+      }
+      setTimeout( () => {
+        window.location.href = "/";
+    }, 1000);
+    });
+
+    console.log("Matching Recipes:", matchingRecipes);
+    
    }
    
    const handleChange = (index, e) => {
@@ -20,8 +37,9 @@ function SortI() {
         setSortedIngredients(newIngredients);
    }
 
-   const addIngredient = () => {
-        setSortedIngredients([...sortedIngredients, { ingredient: '' }]);
+   const addIngredient = () => { 
+        setSortedIngredients([...sortedIngredients, { ingredient: '' }]); 
+        e.preventDefault();
    }
 
    const capacityAlert = () => {

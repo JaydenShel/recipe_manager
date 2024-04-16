@@ -51,11 +51,18 @@ function RecipeBox(){
 
             const data = await response.json();
             const recipesArray = data.recipes;
+            if(!recipesArray) {
+                console.error("No recipes");
+                return "";
+            }
             sessionStorage.setItem('recipe_info', JSON.stringify(recipesArray));
             const recipeNames = recipesArray.map(recipe => recipe.recipe_name);
-            
+            if(!recipeNames) {
+                console.error("No recipes");
+                return "";
+            }
             sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
-            console.log(recipeNames);
+            //console.log(recipeNames);
 
             const selectName = document.getElementById('recipes');
 
