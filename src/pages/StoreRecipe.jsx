@@ -51,17 +51,17 @@ const StoreRecipe = () => {
             });
             console.log(response);
             if (response.status >= 400) {
-                setError("Registration Failed");
+                setError("Store Failed");
             } 
             else {
-                setError("Registration Successful");
-                setTimeout(() => {
-                    window.location.href = "/recipe";
-                }, 1000);
+                setError("Store Successful");
             }
         } catch (error) {
             setError(error.message);
         }
+        setTimeout(() => {
+            window.location.href = "/recipes";
+        }, 1000);
     };
 
     return (

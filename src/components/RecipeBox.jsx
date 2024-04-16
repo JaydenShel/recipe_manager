@@ -91,9 +91,19 @@ function RecipeBox(){
                 <button onClick={() => remove(selectedRecipe) && deleteMessage(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
+                <Link to={'/sortI'}>
+                <button className="button">
+                    <p>Sort by Ingredients</p>
+                </button>
+                </Link>
+                <Link to ={'/sortT'}>
+                <button className="button">
+                    <p>Sort by Time</p>
+                </button>
+                </Link>
             </div>
             <div className="button-container">
-                <label htmlFor="recipes" className="recipe-dropdown">Choose a Recipe:</label>
+                <label htmlFor="recipes" className="choose">Choose a Recipe:</label>
                 <select onChange={handleSelectedChange} id="recipes" name="recipes">
                     <option value="-">-</option>
                 </select>

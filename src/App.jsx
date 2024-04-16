@@ -6,6 +6,7 @@ import Recipes from './pages/Recipes';
 import Settings from './pages/Settings';
 import ProfilePage from './pages/ProfilePage';
 import StoreRecipe from './pages/StoreRecipe';
+import SortI from './pages/SortI';
 import LemonChicken from './pages/LemonChicken';
 import ShrimpScampi from './pages/ShrimpScampi';
 import StirFry from './pages/StirFry';
@@ -29,6 +30,7 @@ function App() {
           <Route path="/recipe/2" element={<StirFry/>}/>
           <Route path="/recipe/3" element={<Pizza/>}/>
           <Route path="/profile" element={<ProfilePage/>}/>
+          <Route path="/recipes/sortI" element={<SortI/>}/>
         </Routes>
       </BrowserRouter>
     </LoginState>
