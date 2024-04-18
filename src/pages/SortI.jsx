@@ -5,12 +5,33 @@ function SortI() {
    const [sortedIngredients, setSortedIngredients] = useState([{ ingredient: '' }]);
 
    const handleSubmit = (e) => {
-        e.preventDefault();
-        sessionStorage.setItem("sortedIngredients", sortedIngredients);
-        console.log("Sorted Ingredients:", sortedIngredients);
-        setTimeout( () => {
-            window.location.href = "/recipes";
-        }, 100);
+    e.preventDefault();
+    console.log("Sorted Ingredients:", sortedIngredients);
+    const recipeData = JSON.parse(sessionStorage.getItem('recipe_info'));
+    const matchingRecipes = []; 
+
+    recipeData.forEach(recipe => {
+      const recipeIngredients = recipe.ingredients;
+
+      const hasAllIngredients = sortedIngredients.every(ingredientObj => {
+        return recipeIngredients.includes(ingredientObj.ingredient);
+      });
+
+      if (hasAllIngredients) {
+        matchingRecipes.push(recipe.recipe_name);
+      }
+
+
+      setTimeout( () => {
+        window.location.href = "/recipes";
+    }, 1000);
+
+    sessionStorage.setItem('isSortedI', true);
+    sessionStorage.setItem('sortedRecipeNames', JSON.stringify(matchingRecipes));
+    });
+
+    console.log("Matching Recipes:", matchingRecipes);
+
    }
    
    const handleChange = (index, e) => {
@@ -20,13 +41,11 @@ function SortI() {
         setSortedIngredients(newIngredients);
    }
 
-   const addIngredient = () => {
+   const addIngredient = (e) => {
+        e.preventDefault(); 
         setSortedIngredients([...sortedIngredients, { ingredient: '' }]);
    }
 
-   const capacityAlert = () => {
-        alert(`Maximum capacity reached.`);
-   }
 
     return (
         <div className='sort-box'>

@@ -3,7 +3,6 @@ function Recipe() {
 
     const retrieveName = (recipeName) => {
         if (!recipeName) {
-            // Handle the case where 'recipeName' is null
             console.error("Recipe name not found");
             return "";
         }
@@ -11,29 +10,47 @@ function Recipe() {
     }
     
     const retrieveInstructions = (recipeName) => {
-        const recipeInfoString = sessionStorage.getItem('recipe_info');
-        if (!recipeInfoString) {
-            // Handle the case where 'recipe_info' is null
-            console.error("Recipe information not found in sessionStorage");
+        try {
+            if (!recipeName) {
+                console.error("Recipe name not found");
+                return "";
+            }
+    
+            const recipeInfoString = sessionStorage.getItem('recipe_info');
+            if (!recipeInfoString) {
+                console.error("Recipe information not found in sessionStorage");
+                return "";
+            }
+        
+            const recipeInfo = JSON.parse(recipeInfoString);
+            const recipe = recipeInfo.find(recipe => recipe.recipe_name === recipeName);
+            return recipe ? recipe.instructions.join("\n") : "";
+        } catch(error) {
+            console.error("Error parsing:", error);
             return "";
         }
-    
-        const recipeInfo = JSON.parse(recipeInfoString);
-        const recipe = recipeInfo.find(recipe => recipe.recipe_name === recipeName);
-        return recipe ? recipe.instructions.join("\n") : "";
     }
     
     const retrieveIngredients = (recipeName) => {
-        const recipeInfoString = sessionStorage.getItem('recipe_info');
-        if (!recipeInfoString) {
-            // Handle the case where 'recipe_info' is null
-            console.error("Recipe information not found in sessionStorage");
+        try {
+            if (!recipeName) {
+                console.error("Recipe name not found");
+                return "";
+            }
+    
+            const recipeInfoString = sessionStorage.getItem('recipe_info');
+            if (!recipeInfoString) {
+                console.error("Recipe information not found in sessionStorage");
+                return "";
+            }
+    
+            const recipeInfo = JSON.parse(recipeInfoString);
+            const recipe = recipeInfo.find(recipe => recipe.recipe_name === recipeName);
+            return recipe ? recipe.ingredients.join(", ") : "";
+        } catch(error) {
+            console.error("Error parsing:", error);
             return "";
         }
-    
-        const recipeInfo = JSON.parse(recipeInfoString);
-        const recipe = recipeInfo.find(recipe => recipe.recipe_name === recipeName);
-        return recipe ? recipe.ingredients.join(", ") : "";
     }
     return(
         <div>

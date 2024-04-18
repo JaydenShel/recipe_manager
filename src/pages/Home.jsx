@@ -18,6 +18,7 @@ function Home(){
 
     useEffect(() => {
         const token = sessionStorage.getItem('token');
+        sessionStorage.setItem('isSortedI', false);
         setIsLoggedIn(!!token); 
     }, []); 
 

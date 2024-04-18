@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom';
 
 function RecipeBox(){
     const [selectedRecipe, setSelectedRecipe] = useState('');
+    const [sortIMessage, setSortIMessage] = useState('');
 
     useEffect(() => {
-        load();
+       load();
     }, []);
 
     //Remove selected recipe
@@ -21,54 +22,85 @@ function RecipeBox(){
             });
     }
 
-    //Load all recipes under username 
+    //Takes in list of recipes to populate the recipe dropdown
+    const populateDropdown = (recipeNames) => {
+        const selectName = document.getElementById('recipes');
+    
+        recipeNames.forEach(recipeName => {
+            const option = document.createElement('option');
+            option.value = recipeName;
+            option.textContent = recipeName;
+            selectName.appendChild(option);
+        });
+    };
+
+    //Based on whether a sort is active, button has differnt functionality
+    const handleSortButton = () => {
+        if(sessionStorage.getItem('isSortedI') == 'true'){
+            sessionStorage.setItem('isSortedI', false);
+            setSortIMessage('Sort by Ingredients');
+            setTimeout( () => {
+                window.location.href = "/recipes";
+            }, 10);
+        }
+        else{
+            setTimeout( () => {
+                window.location.href = "/recipes/sortI";
+            }, 10);
+        }
+    }
+
     const load = async () => {
-        const token = sessionStorage.getItem('token');
-        console.log({token});
-        
-        if (!token) {
-            console.log("Token not found in sessionStorage");
+    const token = sessionStorage.getItem('token');
+    console.log({ token });
+
+    if (!token) {
+        console.log("Token not found in sessionStorage");
+        return;
+    }
+
+    try {
+        const response = await fetch("http://localhost:3000/load/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ token: token }),
+        });
+
+        if (response.ok) {
+            console.log("Load request successful");
+        } else {
+            console.error("Load request failed");
             return;
         }
-    
-        try {
-            const response = await fetch("http://localhost:3000/load/", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    
-                },
-                body: JSON.stringify({ token: token }),
-            });
-    
-            if (response.ok) {
-                console.log("Load request successful");
 
-            } else {
-                console.error("Load request failed");
-              
-            }
-
-            const data = await response.json();
-            const recipesArray = data.recipes;
-            sessionStorage.setItem('recipe_info', JSON.stringify(recipesArray));
-            const recipeNames = recipesArray.map(recipe => recipe.recipe_name);
-            
-            sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
-            console.log(recipeNames);
-
-            const selectName = document.getElementById('recipes');
-
-            recipeNames.forEach(recipeName => {
-                const option = document.createElement('option');
-                option.value = recipeName;
-                option.textContent = recipeName;
-                selectName.appendChild(option);
-            });
-        } catch (error) {
-            console.error("Error:", error);
+        setSortIMessage('Sort by Ingredients');
+        const data = await response.json();
+        const recipesArray = data.recipes;
+        if (!recipesArray) {
+            console.error("No recipes");
+            return;
         }
-    };
+        sessionStorage.setItem('recipe_info', JSON.stringify(recipesArray));
+
+        const recipeNames = recipesArray ? recipesArray.map(recipe => recipe.recipe_name) : [];
+        sessionStorage.setItem('userRecipeNames', JSON.stringify(recipeNames));
+
+        if (sessionStorage.getItem('isSortedI') === "true") {
+            console.log('running sort');
+            const sortedRecipeNames = JSON.parse(sessionStorage.getItem('sortedRecipeNames'));
+            populateDropdown(sortedRecipeNames);
+            setSortIMessage('Remove Sort by Ingredients');
+            return;
+        }
+
+        populateDropdown(recipeNames);
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+};
 
     const handleSelectedChange = (event) => {
         setSelectedRecipe(event.target.value);
@@ -91,11 +123,11 @@ function RecipeBox(){
                 <button onClick={() => remove(selectedRecipe) && deleteMessage(selectedRecipe)} className="button">
                     <p>Delete Recipe</p>
                 </button>
-                <Link to={'/recipes/sortI'}>
-                <button className="button">
-                    <p>Sort by Ingredients</p>
+               
+                <button className="button" onClick={handleSortButton}>
+                    <p>{sortIMessage}</p>
                 </button>
-                </Link>
+               
                 <Link to ={'/recipes/sortT'}>
                 <button className="button">
                     <p>Sort by Time</p>

@@ -59,6 +59,7 @@ const StoreRecipe = () => {
         } catch (error) {
             setError(error.message);
         }
+        console.log('hello');
         setTimeout(() => {
             window.location.href = "/recipes";
         }, 1000);
