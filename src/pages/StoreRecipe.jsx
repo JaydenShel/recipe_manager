@@ -61,8 +61,8 @@ const StoreRecipe = () => {
         }
         console.log('hello');
         setTimeout(() => {
-            window.location.href = "/recipes";
-        }, 1000);
+            window.location.href = "/home/recipes";
+        }, 10);
     };
 
     return (
@@ -93,11 +93,13 @@ const StoreRecipe = () => {
                                         />
                                     </div>
                                 ))}
+                                <hr></hr>
                                 <button type="button" className='button' onClick={() => addIngredient(index)}>Add Ingredient</button>
                                 
                                 <label htmlFor={`instructions${index}`}>Instructions:</label>
                                 {recipe.instructions.map((instruction, instructionIndex) => (
                                     <div key={instructionIndex}>
+                                        <p className='instruction-index'>{instructionIndex + 1}.</p>
                                         <textarea
                                             value={instruction}
                                             onChange={(e) => handleInstructionChange(index, instructionIndex, e.target.value)}
@@ -105,7 +107,9 @@ const StoreRecipe = () => {
                                         />
                                     </div>
                                 ))}
+                                <hr></hr>
                                 <button type="button" className='button' onClick={() => addInstructionStep(index)}>Add Instruction Step</button>
+                                <hr></hr>
                             </div>
                         ))}
                         <button type="button" className='button' onClick={addRecipeSlot}>Add Recipe Slot</button>

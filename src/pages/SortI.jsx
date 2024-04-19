@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import HomeButton from '../components/HomeButton';
-import Recipe from '../components/Recipe';
 
 function SortI() {
    const [sortedIngredients, setSortedIngredients] = useState([{ ingredient: '' }]);

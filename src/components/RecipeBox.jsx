@@ -20,6 +20,7 @@ function RecipeBox(){
             },
             body: JSON.stringify({ username, recipeName }),
             });
+        
     }
 
     //Takes in list of recipes to populate the recipe dropdown
