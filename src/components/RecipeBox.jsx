@@ -26,6 +26,7 @@ function RecipeBox(){
     //Takes in list of recipes to populate the recipe dropdown
     const populateDropdown = (recipeNames) => {
         const selectName = document.getElementById('recipes');
+        selectName.innerHTML = ''; 
     
         recipeNames.forEach(recipeName => {
             const option = document.createElement('option');

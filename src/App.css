@@ -250,3 +250,11 @@ body {
   font-size: 24px;
 }
 
+.time-input {
+  display: flex; 
+}
+
+.time-input input {
+  width: 50px;
+  margin-right: 10px; 
+}

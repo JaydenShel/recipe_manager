@@ -39,7 +39,8 @@ const StoreRecipe = () => {
         setRecipeSlots(newRecipeSlots);
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         const username = sessionStorage.getItem('username');
         try {
             const response = await fetch("http://localhost:3000/store/", {
@@ -59,9 +60,9 @@ const StoreRecipe = () => {
         } catch (error) {
             setError(error.message);
         }
-        console.log('hello');
+      
         setTimeout(() => {
-            window.location.href = "/home/recipes";
+            window.location.href = "/recipes";
         }, 10);
     };
 

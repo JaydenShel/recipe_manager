@@ -27,9 +27,8 @@ function Recipe() {
                 return "";
             }
 
-           
             const numberedInstructions = recipe.instructions.map((instruction, index) => `${index + 1}. ${instruction}`);
-       
+    
             return numberedInstructions.map((instruction, index) => <div key={index}>{instruction}</div>);
         } catch(error) {
             console.error("Error parsing:", error);
