@@ -129,12 +129,7 @@ function RecipeBox(){
                 <button className="button" onClick={handleSortButton}>
                     <p>{sortIMessage}</p>
                 </button>
-               
-                <Link to ={'/recipes/sortT'}>
-                <button className="button">
-                    <p>Sort by Time</p>
-                </button>
-                </Link>
+ 
             </div>
             <div className="button-container">
                 <label htmlFor="recipes" className="choose">Choose a Recipe:</label>
