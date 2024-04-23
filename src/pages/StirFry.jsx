@@ -4,37 +4,37 @@ import HomeButton from '../components/HomeButton';
 
 const StirFry = () => {
     return (
-<div className='text-background'>
-    <HomeButton/>
+        <div className='text-background'>
+            <HomeButton />
             <div className='text'>
-                <h2>Lemon Chicken Recipe</h2>
+                <h2>Vegetable Stir-Fry Recipe</h2>
                 <div className='sub-background'>
                     <h3 className='subtitle'>Ingredients:</h3>
                     <ul>
-                        <li>4 boneless, skinless chicken breasts</li>
-                        <li>2 lemons, juiced and zested</li>
-                        <li>4 cloves garlic, minced</li>
-                        <li>2 tablespoons olive oil</li>
-                        <li>1 teaspoon dried oregano</li>
-                        <li>1/2 teaspoon salt</li>
-                        <li>1/4 teaspoon black pepper</li>
-                        <li>Fresh parsley, chopped (for garnish)</li>
+                        <li>1 cup broccoli florets</li>
+                        <li>1 bell pepper, sliced</li>
+                        <li>1 carrot, sliced</li>
+                        <li>1/2 cup snow peas</li>
+                        <li>1/4 cup soy sauce</li>
+                        <li>2 tablespoons hoisin sauce</li>
+                        <li>2 cloves garlic, minced</li>
+                        <li>1 tablespoon sesame oil</li>
+                        <li>Cooked rice, for serving</li>
                     </ul>
                 </div>
                 <div className='sub-background'>
                     <h3 className='subtitle'>Instructions:</h3>
                     <ol>
-                        <li>In a small bowl, combine lemon juice, lemon zest, minced garlic, olive oil, oregano, salt, and pepper.</li>
-                        <li>Place chicken breasts in a shallow dish or resealable plastic bag. Pour the lemon marinade over the chicken, making sure it's evenly coated. Marinate in the refrigerator for at least 30 minutes, or up to 4 hours.</li>
-                        <li>Preheat grill or grill pan to medium-high heat. Remove chicken from marinade and discard excess marinade.</li>
-                        <li>Grill chicken for 6-7 minutes per side, or until cooked through and no longer pink in the center.</li>
-                        <li>Remove chicken from grill and let it rest for a few minutes before serving.</li>
-                        <li>Garnish with chopped fresh parsley before serving.</li>
+                        <li>In a wok or large skillet, heat sesame oil over medium-high heat. Add minced garlic and cook until fragrant.</li>
+                        <li>Add broccoli florets, sliced bell pepper, sliced carrot, and snow peas to the wok. Stir-fry for 3-4 minutes, or until vegetables are tender-crisp.</li>
+                        <li>In a small bowl, whisk together soy sauce and hoisin sauce. Pour the sauce over the vegetables in the wok and toss to coat evenly.</li>
+                        <li>Continue cooking for another 1-2 minutes, stirring constantly, until the sauce thickens slightly and coats the vegetables.</li>
+                        <li>Serve the vegetable stir-fry hot over cooked rice.</li>
                     </ol>
                 </div>
-                <h1>Enjoy your delicious lemon chicken!</h1>
+                <h1>Enjoy your delicious vegetable stir-fry!</h1>
             </div>
-            <img src={stirFry} alt="Shrimp Scampi" className='carousel-image'/>
+            <img src={stirFry} alt="Vegetable Stir-Fry" className='carousel-image' />
         </div>
     )
 }

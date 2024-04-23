@@ -34,6 +34,12 @@ function RecipeBox(){
             option.textContent = recipeName;
             selectName.appendChild(option);
         });
+
+        if (recipeNames.length === 1) {
+            setSelectedRecipe(recipeNames[0]);
+            sessionStorage.setItem('currentRecipe', recipeNames[0]);
+        }
+
     };
 
     //Based on whether a sort is active, button has differnt functionality
