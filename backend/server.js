@@ -20,6 +20,15 @@ app.use(express.json());
 app.use(cors());
 app.use(bodyParser.json());
 
+//CORS Configuration
+const corsOptions = {
+  origin: 'http://localhost:5173', //Frontend URL
+  credentials: true,  //Allow credentials (cookies)
+};
+
+//Use CORS with the specified options
+app.use(cors(corsOptions));
+
 app.use('/register', registerRoute);
 app.use('/load', loadRoute);
 app.use('/store', storeRoute);
@@ -28,14 +37,7 @@ app.use('/login', loginRoute);
 
 async function queryDatabase(query, value) {
   const client = new Client({
-    user: 'juuvvchngxwoww',
-    host: 'ec2-52-205-55-36.compute-1.amazonaws.com',
-    database: 'dasnu3ht1t63jj',
-    password: 'c66c247884d5a38d06f94758342ec00d565fb5bed496385f150163aa6765f37d',
-    port: 5432,
-    ssl: {
-      rejectUnauthorized: false
-    }
+    connectionString: process.env.DATABASE_URL
   });
   try {
     await client.connect();
